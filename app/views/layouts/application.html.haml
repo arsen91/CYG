@@ -1,0 +1,9 @@
+!!! 5
+%html
+	%head
+  	%title Chooseyourgarage
+  	%link {:media => 'all', 'data-turbolinks-track' => true }
+  	%script {:media => 'all', 'data-turbolinks-track' => true }
+    = csrf_meta_tags
+	body
+		= yield
