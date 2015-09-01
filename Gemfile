@@ -11,6 +11,8 @@ gem 'sdoc',         '0.4.0', group: :doc
 gem 'slim',         '3.0.6'
 gem 'foundation-rails'
 gem 'pg',          '0.18.2'
+gem 'gmaps4rails'
+gem 'lodash-rails'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
