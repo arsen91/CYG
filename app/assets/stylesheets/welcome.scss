@@ -3,9 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .map-container.row {
+	margin-top: 2em;
 	max-width: 100%;
 }
 
 #map {
 	height: 35em;
+}
+
+.button-group {
+	float: right;
+}
+
+.button-group a.button {
+	color: #000;
+	background-color: transparent;
+}
+
+.button-group a.button:hover {
+	color: #a6a6a6;
+}
+
+.button-group li {
+	padding-top: 3%;
+}
+
+.namelogo h1 {
+	font-size: 1.5em;
+	text-align: left;
+}
+
+.namelogo {
+	padding: 20px 10px 0px 10px;
+}
+footer {
+	padding: 80px 0 10px 0;	
 }
