@@ -2,11 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.map-container {
-	width: 800px;
+.map-container.row {
+	max-width: 100%;
 }
 
 #map {
-	width:800px;
-	height: 400px;
+	height: 35em;
 }

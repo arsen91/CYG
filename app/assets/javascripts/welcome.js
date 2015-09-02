@@ -1,19 +1,16 @@
 google.maps.event.addDomListener(window, "load", function () {
   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function() {
-    markers = handler.addMarkers([
-      {
-        "lat": 0,
-        "lng": 0,
-        "picture": {
-          "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-          "width":  36,
-          "height": 36
-        },
-        "infowindow": "hello!"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
+  handler.buildMap({ internal: { id: 'map' } }, function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setupMap);
+    }
   });
+
+  var setupMap = function(pos) {
+    var marker = handler.addMarker({
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    });
+    handler.map.centerOn(marker);
+  };
 });
