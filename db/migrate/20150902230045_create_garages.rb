@@ -5,10 +5,8 @@ class CreateGarages < ActiveRecord::Migration
     	t.string :adress, null: false
     	t.float :latitude, null: false
     	t.float :longitude, null: false
-    	t.float :rating
-    	t.float :average_cost
-    	t.comments, commentd
-    	# add car column also.. 
+    	t.float :average_cost 
+
       t.timestamps null: false
     end
   end
