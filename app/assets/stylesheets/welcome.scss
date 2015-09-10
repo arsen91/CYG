@@ -18,7 +18,8 @@
 .button-group a.button {
 	color: #000;
 	background-color: transparent;
-	padding-right: 1rem;
+	padding-right: 1em;
+	padding-top: 0em;
 }
 
 .button-group a.button:hover {
@@ -34,9 +35,20 @@
 	text-align: left;
 }
 
-.namelogo {
-	padding: 20px 10px 0px 10px;
+.top-nav {
+	margin-top: 1.5em;
 }
-footer {
-	padding: 80px 0 10px 0;	
+
+.main-container {
+  min-height: 100%;
+  margin-bottom: -100px; 
+}
+
+.main-container:after {
+  content: "";
+  display: block;
+}
+
+footer, .main-container:after {
+  height: 100px; 
 }

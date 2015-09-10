@@ -1,33 +1,23 @@
 .row
-	.small-12.medium-4.column.namelogo
+	.small-12.medium-4.column.namelogo.top-nav
 		h1 Choose your garage
 
-	.small-12.medium-4.column
-		= form_for
+	.small-12.medium-4.column.search-container.top-nav
+		= form_tag search_garages_path, method: 'get'
+			= text_field_tag :search
 
-	.small-12.medium-4.column
+	.small-12.medium-4.column.top-nav
 		.nav-bar
 			ul.button-group
 				li 
-					a.button href='#' About 
+					= link_to 'Add new garage', new_garage_path, remote: true, class: 'button', id: 'add-garage-link', "data-reveal-id" => "garageModal"
 				li 
-					a.button href='#'	Contact
-				li 
-					=link_to "Login", new_user_session_path, class: 'button'
+					= link_to 'Login', new_user_session_path, class: 'button'
 
 .map-container.row
 		#map
 
-footer.row
-	.column.small-12
-		.row
-			.column.small-6
-				p © Copyright Arseni Prokharchyk. See contact if needed.
-			.column.small-6
-				ul.inline-list.right
-					li
-						a href='#' Contacts
-					li
-						a href='#' About
-					li
-						a href='#' Hire
+#garageModal.reveal-modal aria-labelledby='modalTitle' aria-hidden="true" role="dialog" data-reveal='data-reveal'
+  h2#modalTitle Create new garage
+  = render 'garages/form' 
+  a.close-reveal-modal aria-label="Close"&#215;
