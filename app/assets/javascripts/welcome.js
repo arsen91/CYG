@@ -10,7 +10,7 @@ google.maps.event.addDomListener(window, "load", function () {
     var marker = handler.addMarker({
       lat: pos.coords.latitude,
       lng: pos.coords.longitude
-    }, 
+    },
     {
       draggable: true
     });
