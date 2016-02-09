@@ -15,6 +15,7 @@ gem 'gmaps4rails'
 gem 'lodash-rails'
 gem 'normalize-rails'
 gem 'devise'
+gem 'cancan'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
