@@ -9,13 +9,33 @@
 	.small-12.medium-4.column.top-nav
 		.nav-bar
 			ul.button-group
-				li 
+				li
 					= link_to 'Add new garage', new_garage_path, remote: true, class: 'button', id: 'add-garage-link', "data-reveal-id" => "garageModal"
-				li 
-					= link_to 'Login', new_user_session_path, class: 'button'
+				- if user_signed_in?
+					li Hello member
+					li
+						= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button'
+				- else 
+					li
+						= link_to 'Login', new_user_session_path, class: 'button'
+
 
 .map-container.row
 		#map
+
+footer.row
+	.column.small-12
+		.row
+			.column.small-6
+				p © Copyright Arseni Prokharchyk. See contact if needed.
+			.column.small-6
+				ul.inline-list.right
+					li
+						a href='#' Contacts
+					li
+						a href='#' About
+					li
+						a href='#' Hire
 
 #garageModal.reveal-modal aria-labelledby='modalTitle' aria-hidden="true" role="dialog" data-reveal='data-reveal'
   h2#modalTitle Create new garage
