@@ -1,43 +1,31 @@
-.row
-	.small-12.medium-4.column.namelogo.top-nav
-		h1 Choose your garage
-
-	.small-12.medium-4.column.search-container.top-nav
+header
+	.search-container.flex-item
 		= form_tag search_garages_path, method: 'get'
 			= text_field_tag :search
 
-	.small-12.medium-4.column.top-nav
+	.top-links.flex-item
 		.nav-bar
-			ul.button-group
-				li
-					= link_to 'Add new garage', new_garage_path, remote: true, class: 'button', id: 'add-garage-link', "data-reveal-id" => "garageModal"
+			ul.menu 
 				- if user_signed_in?
-					li Hello member
 					li
-						= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button'
+						= link_to 'Add new garage', new_garage_path, remote: true, "data-open" => "garageModal"
+					li
+						= link_to 'Logout', destroy_user_session_path, method: :delete, remote: true, id: "logout"
+					li
+						| Hello 
+						= current_user.full_name
 				- else 
 					li
 						= link_to 'Login', new_user_session_path, class: 'button'
 
+.map-container
+	#map
 
-.map-container.row
-		#map
+footer
+	p © Copyright Arseni Prokharchyk. See contact if needed.
 
-footer.row
-	.column.small-12
-		.row
-			.column.small-6
-				p © Copyright Arseni Prokharchyk. See contact if needed.
-			.column.small-6
-				ul.inline-list.right
-					li
-						a href='#' Contacts
-					li
-						a href='#' About
-					li
-						a href='#' Hire
 
-#garageModal.reveal-modal aria-labelledby='modalTitle' aria-hidden="true" role="dialog" data-reveal='data-reveal'
-  h2#modalTitle Create new garage
-  = render 'garages/form' 
-  a.close-reveal-modal aria-label="Close"&#215;
+#garageModal.reveal data-reveal='data-reveal'
+ 	h2#modalTitle Create new garage
+  	button.close-button data-close='data-close' aria-label="Close modal" type="button"
+    	span aria-hidden="true" &times;

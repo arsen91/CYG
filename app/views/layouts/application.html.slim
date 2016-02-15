@@ -1,16 +1,27 @@
 doctype html
 html
-	head
-  	title Chooseyourgarage
-    = javascript_include_tag "vendor/modernizr"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    title == content_for?(:title) ? yield(:title) : "Untitled"
+
     = javascript_include_tag "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry"
     = javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"
-		= javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
-  	= stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag "application", 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    = javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+
+    link rel="shortcut icon" href="http://www.veryicon.com/icon/ico/Object/Points%20Of%20Interest/Car%20Repair%20Blue%202.ico"
     link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"
-	body
-		.main-container
-			= yield
-	    / = render 'shared/footer'
+    = csrf_meta_tag
+
+  body
+    .main-container
+        == yield
+
+
+    # = stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track' => true
+    / body
+    /         = yield
+        / = render 'shared/footer'
