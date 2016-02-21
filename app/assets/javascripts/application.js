@@ -15,7 +15,6 @@
 //= require foundation
 //= require turbolinks
 //= require lodash
-//= require gmaps/google
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(document).ready(function(){ $(document).foundation(); });

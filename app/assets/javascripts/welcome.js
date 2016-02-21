@@ -1,19 +1,8 @@
-google.maps.event.addDomListener(window, "load", function () {
-  handler = Gmaps.build('Google');
-  handler.buildMap({ internal: { id: 'map' } }, function() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setupMap);
-    }
-  });
+$(document).ready(function() {
+  var map = L.map('map').setView([51.505, -0.09], 13);
 
-  var setupMap = function(pos) {
-    var marker = handler.addMarker({
-      lat: pos.coords.latitude,
-      lng: pos.coords.longitude
-    },
-    {
-      draggable: true
-    });
-    handler.map.centerOn(marker);
-  };
+  var googleLayer = new L.Google("ROADMAP");
+  map.addLayer(googleLayer);
+
+  var marker = L.marker([51.5, -0.09]).addTo(map)
 });

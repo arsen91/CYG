@@ -1,3 +1,12 @@
 div.garage-form
-    = form_for @garage do |f|
-        = f.label :name
+    = form_for @garage, remote: true do |f|
+        .field
+            = f.label :name 
+            = f.text_field :name, autofocus: true
+
+        .field
+            = f.label :address 
+            = f.text_field :address, autocomplete: "off"
+
+        .actions
+          = f.submit "Create", class: 'button small create-garage'

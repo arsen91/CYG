@@ -30,6 +30,13 @@
     #map {
         height: 65vh;
     }
+
+    .leaflet-google-layer {
+        z-index: 0 !important;
+    }
+    .leaflet-map-pane {
+        z-index: 100;
+    }
 }
 // .map-container.row {
 //     margin-top: 2em;
