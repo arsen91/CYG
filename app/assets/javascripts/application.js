@@ -16,5 +16,9 @@
 //= require turbolinks
 //= require lodash
 //= require_tree .
+//= require angular
 
-$(document).ready(function(){ $(document).foundation(); });
+angular.module('CYG', []);
+$(document).ready(function() { 
+    $(document).foundation();
+});
