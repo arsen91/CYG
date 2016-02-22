@@ -8,6 +8,7 @@ $(document).ready(function() {
             link: function(scope, element) {
                 element.on("ajax:success", function(event, data) {
                     mapFactory.addMarker(data.latitude, data.longitude);
+                    angular.element('#garageModal').find('.close-button').click();
                 });
             }
         };
