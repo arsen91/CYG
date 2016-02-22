@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  open_time: 2016-02-22
+  close_time: 2016-02-22
+  closed_days: MyString
+
+two:
+  open_time: 2016-02-22
+  close_time: 2016-02-22
+  closed_days: MyString
