@@ -208,6 +208,7 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.8.3)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.0.0.beta3)
@@ -245,6 +246,7 @@ DEPENDENCIES
   sqlite3
   turbolinks (= 2.3.0)
   uglifier (= 2.5.3)
+  underscore-rails
   web-console (= 2.0.0.beta3)
 
 BUNDLED WITH

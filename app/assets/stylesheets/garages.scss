@@ -1,0 +1,44 @@
+.garage-form {
+    form {
+        display: flex;
+        flex-flow: row wrap;
+
+        .field {
+            flex: 1 100%;
+
+            &.working-days {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                margin: 10px 0 20px;
+
+                .week-day {
+                    width: 40px;
+                    height: 30px;
+                    background-color: lightgrey;
+                    text-align: center;
+                    cursor: pointer;
+                    color: whitesmoke;
+                    line-height: 1.8;
+                    
+                    &.chosen {
+                        border: 1px solid gray;
+                        background-color: darkgray;
+                    }
+
+                    & ~ .week-day {
+                        margin-left: 4%;
+                    }
+                }
+            }
+        }
+
+        .field.half-field {
+            flex: 2 45%;
+
+            & ~ .half-field {
+                margin-left: 10px;
+            }
+        }
+    }
+}

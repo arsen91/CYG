@@ -7,6 +7,21 @@ div.garage-form
         .field
             = f.label :address 
             = f.text_field :address, autocomplete: "off"
+        .field.half-field
+            = f.label :start_time 
+            = f.text_field :start_time
+        .field.half-field
+            = f.label :end_time 
+            = f.text_field :end_time
+        .field.working-days
+            .week-day Пн.
+            .week-day Вт.
+            .week-day Ср.
+            .week-day Чт.
+            .week-day Пт.
+            .week-day Сб.
+            .week-day Вс.
+        = f.hidden_field :working_days, value: "", class: "week-days"
 
-        .actions
+        .actions.field
           = f.submit "Create", class: 'button small create-garage'
