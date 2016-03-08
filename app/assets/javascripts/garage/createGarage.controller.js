@@ -43,9 +43,9 @@ $(document).ready(function() {
                     angular.element('.lat').val(lat);
                     angular.element('.lng').val(lng);
 
-                    garageMarker.on('dragend', function(eve) {
-                        angular.element('.lat').val(eve.target._latlng.lat);
-                        angular.element('.lng').val(eve.target._latlng.lng);
+                    garageMarker.on('dragend', function(event) {
+                        angular.element('.lat').val(event.target._latlng.lat);
+                        angular.element('.lng').val(event.target._latlng.lng);
                     });
                 });
             }
