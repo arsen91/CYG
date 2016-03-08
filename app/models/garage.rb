@@ -1,4 +1,3 @@
-require 'pry'
 class Garage < ActiveRecord::Base
     geocoded_by :address
     # for seed
