@@ -1,30 +1,50 @@
 $(document).ready(function() {
     angular.module('CYG').factory('mapFactory', function() {
-        var map;
+        // var map;
 
         return {
             initMap: initMap,
-            addMarker: addMarker
+            addMarker: addMarker,
+            geocoder: new google.maps.Geocoder(),
+            carIcon: L.icon({
+                iconUrl: 'assets/images/car-icon.png',
+                iconSize: [32, 37]
+            })
         };
 
         function initMap(lat, lon) {
-            map = L.map('map').setView([lat, lon], 15);
+            var markerConf = {
+                latitude: lat, 
+                longitude: lon, 
+                popup: false, 
+                defaultText: 'Вы здесь!', 
+                showPopup: true
+            },
+            googleLayer = new L.Google("ROADMAP");
 
-            var googleLayer = new L.Google("ROADMAP");
-            map.addLayer(googleLayer);
-            this.addMarker({latitude: lat, longitude: lon, init: true});
+            this.map = L.map('map').setView([lat, lon], 13);
+            this.map.addLayer(googleLayer);
+            this.addMarker(markerConf);
         }
 
-        function addMarker(garageConfig) {
-            var popupElement;
-            var marker = L.marker([garageConfig.latitude, garageConfig.longitude]).addTo(map);
-            if (garageConfig.init) {
-                popupElement = 'Вы здесь!'
-            } else {
+        function addMarker(garageConfig, options) {
+            var popupElement, 
+                popup,
+                marker = L.marker([garageConfig.latitude, garageConfig.longitude], options || {}).addTo(this.map);
+
+            if (garageConfig.popup) {
                 var template = _.template(JST["templates/popupContent"]);
                 popupElement = template(garageConfig);
+            } else {
+                popupElement = garageConfig.defaultText;
             }
-            marker.bindPopup(popupElement).openPopup();
+            
+            popup = marker.bindPopup(popupElement)
+            
+            if (garageConfig.showPopup) {
+                popup.openPopup();
+            }
+            return marker;
         }
     });
 });

@@ -1,10 +1,15 @@
 require 'pry'
 class GaragesController < ApplicationController
-	before_action :all_garages, only: [:new, :search, :create]
+	before_action :all_garages, only: [:new]
 	respond_to :html, :js
 	before_filter :authenticate_user!
 
 	def search
+		@found_garages = Garage.search_query(params[:search])
+
+		respond_to do |format| 
+			format.json {render json: @found_garages}
+		end
 	end
 
 	def new
@@ -13,9 +18,7 @@ class GaragesController < ApplicationController
 
 	def create
 		@garage = Garage.create(garage_params)
-		respond_to do |format|
-			format.json { render json: @garage, status: :created, location: @garage }
-		end
+		redirect_to root_path
 	end
 
 	private

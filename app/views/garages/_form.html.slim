@@ -1,27 +1,33 @@
-div.garage-form
-    = form_for @garage, remote: true do |f|
-        .field
-            = f.label :name 
-            = f.text_field :name, autofocus: true
+= form_for @garage, html: {name: "cGarageForm", novalidate: true} do |f|
+    .field
+        = f.label :name 
+        = f.text_field :name, autofocus: true, required: true, "ng-model": "value"
+        label.error ng-show="cGarageForm['garage[name]'].$error.required && cGarageForm['garage[name]'].$touched" Поле Имя не может быть пустым
 
-        .field
-            = f.label :address 
-            = f.text_field :address, autocomplete: "off"
-        .field.half-field
-            = f.label :start_time 
-            = f.text_field :start_time
-        .field.half-field
-            = f.label :end_time 
-            = f.text_field :end_time
-        .field.working-days
-            .week-day Пн.
-            .week-day Вт.
-            .week-day Ср.
-            .week-day Чт.
-            .week-day Пт.
-            .week-day Сб.
-            .week-day Вс.
-        = f.hidden_field :working_days, value: "", class: "week-days"
+    .field
+        = f.label :address 
+        = f.text_field :address, autocomplete: "off", required: true, "ng-model": "value1"
+        label.error ng-show="cGarageForm['garage[address]'].$invalid && cGarageForm['garage[address]'].$touched" Поле Адрес не может быть пустым
+        label.error ng-show="cGarageForm['garage[address]'].invalidAddress && cGarageForm['garage[address]'].$dirty" Был введен некорректный адрес
+    .field.half-field
+        = f.label :start_time 
+        = f.text_field :start_time, required: true, "ng-model": "value2"
+        label.error ng-show="cGarageForm['garage[start_time]'].$invalid && cGarageForm['garage[start_time]'].$touched" Поле Время Открытия не может быть пустым
+    .field.half-field
+        = f.label :end_time 
+        = f.text_field :end_time, required: true, "ng-model": "value3"
+        label.error ng-show="cGarageForm['garage[end_time]'].$invalid && cGarageForm['garage[end_time]'].$touched" Поле Время Закрытия не может быть пустым
+    .field.working-days
+        .week-day Пн.
+        .week-day Вт.
+        .week-day Ср.
+        .week-day Чт.
+        .week-day Пт.
+        .week-day Сб.
+        .week-day Вс.
+    = f.hidden_field :working_days, value: "", class: "week-days"
+    = f.hidden_field :latitude, value: "", class: "lat"
+    = f.hidden_field :longitude, value: "", class: "lng"
 
-        .actions.field
-          = f.submit "Create", class: 'button small create-garage'
+    .actions.field
+      = f.submit "Create", "ng-disabled": 'cGarageForm.$invalid', class: "button small create-garage"

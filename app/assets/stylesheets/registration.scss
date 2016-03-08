@@ -19,8 +19,14 @@
 }
 
 div.form-container {
+    display: flex;
     height: 100%;
     flex: none;
+
+    form {
+        align-self: center;
+    }
+
     label, h2, #error_explanation {
         color: #fff;
     }

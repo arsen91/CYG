@@ -12,14 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require underscore
 //= require foundation
 //= require turbolinks
 //= require lodash
 //= require_tree .
 //= require angular
+//= require sessions
 
 angular.module('CYG', []);
-$(document).ready(function() { 
+$(document).on('ready page:load', function() { 
     $(document).foundation();
+    angular.bootstrap(document.body, ['CYG'])
 });

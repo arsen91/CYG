@@ -1,14 +1,14 @@
-header
-	.search-container.flex-item
-		= form_tag search_garages_path, method: 'get'
-			= text_field_tag :search
+header 
+	.search-container.flex-item.search-garage
+		= form_tag search_garages_path, method: 'get', remote: true, id: "garage-search"
+			= text_field_tag :search, nil, placeholder: "Введите имя или адрес СТО"
 
 	.top-links.flex-item
 		.nav-bar
 			ul.menu 
 				- if user_signed_in?
 					li
-						= link_to 'Добавить новый гараж', new_garage_path, remote: true, "data-open" => "garageModal"
+						= link_to 'Добавить новый гараж', new_garage_path
 					li
 						= link_to 'Выйти', destroy_user_session_path, method: :delete, remote: true, id: "logout"
 					li
@@ -24,10 +24,3 @@ header
 
 footer
 	p © Copyright Arseni Prokharchyk. See contact if needed.
-
-
-#garageModal.reveal data-reveal=''
- 	h2#modalTitle Create new garage
-	create-garage-form
-  	button.close-button data-close='' aria-label="Close modal" type="button"
-    	span aria-hidden="true" &times;
