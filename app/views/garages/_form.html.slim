@@ -1,22 +1,30 @@
 = form_for @garage, html: {name: "cGarageForm", novalidate: true} do |f|
     .field
-        = f.label :name 
+        = f.label :name, "Название"
         = f.text_field :name, autofocus: true, required: true, "ng-model": "value"
         label.error ng-show="cGarageForm['garage[name]'].$error.required && cGarageForm['garage[name]'].$touched" Поле Имя не может быть пустым
 
     .field
-        = f.label :address 
+        = f.label :address, "Адрес"
         = f.text_field :address, autocomplete: "off", required: true, "ng-model": "value1"
         label.error ng-show="cGarageForm['garage[address]'].$invalid && cGarageForm['garage[address]'].$touched" Поле Адрес не может быть пустым
         label.error ng-show="cGarageForm['garage[address]'].invalidAddress && cGarageForm['garage[address]'].$dirty" Был введен некорректный адрес
     .field.half-field
-        = f.label :start_time 
+        = f.label :start_time, "Начало работы"
         = f.text_field :start_time, required: true, "ng-model": "value2"
         label.error ng-show="cGarageForm['garage[start_time]'].$invalid && cGarageForm['garage[start_time]'].$touched" Поле Время Открытия не может быть пустым
     .field.half-field
-        = f.label :end_time 
+        = f.label :end_time, "Конец работы"
         = f.text_field :end_time, required: true, "ng-model": "value3"
         label.error ng-show="cGarageForm['garage[end_time]'].$invalid && cGarageForm['garage[end_time]'].$touched" Поле Время Закрытия не может быть пустым
+    .field.half-field
+        = f.label :phone, "Телефон"
+        = f.text_field :phone, required: true, "ng-model": "value4"
+        label.error ng-show="cGarageForm['garage[phone]'].$invalid && cGarageForm['garage[phone]'].$touched" Поле Телефон не может быть пустым
+    .field.half-field
+        = f.label :average_cost, "Ценовая категория"
+        = f.select :average_cost, [['Дешево', 1], ['Нормально', 2], ['Дорого', 3]], prompt: "Выберите категорию", required: true, "ng-model": "value5"
+        label.error ng-show="cGarageForm['garage[average_cost]'].$invalid && cGarageForm['garage[average_cost]'].$touched" Поле Ценовая Категория не может быть пустым
     .field.working-days
         .week-day Пн.
         .week-day Вт.

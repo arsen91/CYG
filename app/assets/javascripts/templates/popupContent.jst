@@ -1,5 +1,8 @@
 '<div class="popup-garage-container"> \
-  <h5><%= name %></h5> \
+  <h5 class="name-header"><%= name %></h5> \
+  <% for(var i = 0; i < average_cost; i++) { %> \
+    <span class="glyphicon glyphicon-usd"></span> \
+  <% } %> \
   <table> \
     <tr> \
       <td>Время работы:</td> \

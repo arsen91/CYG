@@ -19,6 +19,7 @@ gem 'newrelic_rpm'
 gem 'cancan'
 gem 'angularjs-rails'
 gem 'underscore-rails'
+gem 'bootstrap-glyphicons'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

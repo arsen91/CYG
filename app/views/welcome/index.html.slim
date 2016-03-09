@@ -1,7 +1,9 @@
 header 
 	.search-container.flex-item.search-garage
 		= form_tag search_garages_path, method: 'get', remote: true, id: "garage-search"
-			= text_field_tag :search, nil, placeholder: "Введите имя или адрес СТО"
+			= text_field_tag :search, nil, placeholder: "Введите имя/адрес"
+			= select_tag :average_cost, "<option value='0'>Любая цена</option><option value='1'>Дешево</option><option value='2'>Нормально</option><option value='3'>Дорого</option>".html_safe
+			= submit_tag "Найти", class: "button small"
 
 	.top-links.flex-item
 		.nav-bar

@@ -4,7 +4,7 @@ class Garage < ActiveRecord::Base
     # before_validation :geocode
 
     scope :search_query, lambda { |query|
-      return nil  if query.blank?
+      query = '' if query.blank?
 
       terms = query.downcase.split(/\s+/)
 
@@ -21,4 +21,6 @@ class Garage < ActiveRecord::Base
         *terms.map { |e| [e] * num_or_conds }.flatten
       )
     }
+
+    scope :average_cost, -> (average_cost) { where average_cost: Integer(average_cost) === 0 ? [1,2,3] : average_cost }
 end

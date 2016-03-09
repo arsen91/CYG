@@ -6,10 +6,11 @@
     height: 100vh;
 
     .map-container {
-        width: 100%;
+        width: 60%;
+        height: 40%;
         
         #map.form-map {
-            height: 50vh;
+            height: 100%;
         }
     }
 
@@ -52,7 +53,7 @@
         .field.half-field {
             flex: 2 45%;
 
-            & ~ .half-field {
+            &:nth-child(2n) {
                 margin-left: 10px;
             }
         }

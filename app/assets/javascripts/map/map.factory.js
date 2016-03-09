@@ -1,6 +1,5 @@
 $(document).ready(function() {
     angular.module('CYG').factory('mapFactory', function() {
-        // var map;
 
         return {
             initMap: initMap,
@@ -22,7 +21,7 @@ $(document).ready(function() {
             },
             googleLayer = new L.Google("ROADMAP");
 
-            this.map = L.map('map').setView([lat, lon], 13);
+            this.map = L.map('map').setView([lat, lon], 10);
             this.map.addLayer(googleLayer);
             this.addMarker(markerConf);
         }
@@ -33,8 +32,12 @@ $(document).ready(function() {
                 marker = L.marker([garageConfig.latitude, garageConfig.longitude], options || {}).addTo(this.map);
 
             if (garageConfig.popup) {
+                var cost = '';
                 var template = _.template(JST["templates/popupContent"]);
                 popupElement = template(garageConfig);
+                for (var i = 0; i < garageConfig.average_cost; i++) {
+                    cost += '<span class="glyphicon glyphicon-usd"></span>';
+                }
             } else {
                 popupElement = garageConfig.defaultText;
             }

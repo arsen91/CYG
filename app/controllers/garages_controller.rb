@@ -1,10 +1,10 @@
 class GaragesController < ApplicationController
 	before_action :all_garages, only: [:new]
 	respond_to :html, :js
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, except: [:search]
 
 	def search
-		@found_garages = Garage.search_query(params[:search])
+		@found_garages = Garage.search_query(params[:search]).average_cost(params[:average_cost])
 
 		respond_to do |format| 
 			format.json {render json: @found_garages}

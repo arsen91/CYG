@@ -29,6 +29,18 @@
                 height: 55px;
             }
         }
+
+        #garage-search {
+            display: flex;
+
+            #search, #average_cost {
+                width: 40%;
+            }
+
+            #average_cost, .button {
+                margin-left: 10px;
+            }
+        }
     }
 
     & > * {

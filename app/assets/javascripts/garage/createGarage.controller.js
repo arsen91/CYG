@@ -32,7 +32,8 @@ $(document).ready(function() {
                     var data = {
                         latitude: lat, 
                         longitude: lng,
-                        popup: false, 
+                        popup: false,
+                        showPopup: true, 
                         defaultText: "Проверьте правильность расположения маркера"
                     };
                     if (!garageMarker) {
