@@ -18,6 +18,7 @@
 //= require_tree .
 //= require angular
 //= require sessions
+//= require jquery.raty.js
 
 angular.module('CYG', []);
 $(document).on('ready page:load', function() { 
