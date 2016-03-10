@@ -1,28 +1,29 @@
-header 
-	.search-container.flex-item.search-garage
-		= form_tag search_garages_path, method: 'get', remote: true, id: "garage-search"
-			= text_field_tag :search, nil, placeholder: "Введите имя/адрес"
-			= select_tag :average_cost, "<option value='0'>Любая цена</option><option value='1'>Дешево</option><option value='2'>Нормально</option><option value='3'>Дорого</option>".html_safe
-			= submit_tag "Найти", class: "button small"
+.main-container
+	header 
+		.search-container.flex-item.search-garage
+			= form_tag search_garages_path, method: 'get', remote: true, id: "garage-search"
+				= text_field_tag :search, nil, placeholder: "Введите имя/адрес"
+				= select_tag :average_cost, "<option value='0'>Любая цена</option><option value='1'>Дешево</option><option value='2'>Нормально</option><option value='3'>Дорого</option>".html_safe
+				= submit_tag "Найти", class: "button small"
 
-	.top-links.flex-item
-		.nav-bar
-			ul.menu 
-				- if user_signed_in?
-					li
-						= link_to 'Добавить новый гараж', new_garage_path
-					li
-						= link_to 'Выйти', destroy_user_session_path, method: :delete, remote: true, id: "logout"
-					li
-						a 
-							| Hello 
-							= current_user.full_name
-				- else 
-					li
-						= link_to 'Login', new_user_session_path, class: 'button'
+		.top-links.flex-item
+			.nav-bar
+				ul.menu 
+					- if user_signed_in?
+						li
+							= link_to 'Добавить новый гараж', new_garage_path
+						li
+							= link_to 'Выйти', destroy_user_session_path, method: :delete, remote: true, id: "logout"
+						li
+							a 
+								| Hello 
+								= current_user.full_name
+					- else 
+						li
+							= link_to 'Login', new_user_session_path, class: 'button'
 
-.map-container ng-controller="MapController"
-	#map
+	.map-container ng-controller="MapController"
+		#map
 
-footer
-	p © Copyright Arseni Prokharchyk. See contact if needed.
+	footer
+		p © Copyright Arseni Prokharchyk. See contact if needed.

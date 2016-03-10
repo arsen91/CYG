@@ -1,7 +1,9 @@
-.garage-form ng-controller="CreateGarageController"
-    = render ("form")
+.main-container
+    = link_to "На главную", root_path
+    .garage-form ng-controller="CreateGarageController"
+        = render ("form")
 
-    .map-container ng-controller="MapController"
-        #map.form-map
+        .map-container ng-controller="MapController"
+            #map.form-map
 
-    = content_tag :div, class: "temp_information", data: {garages: @garages} do
+        = content_tag :div, class: "temp_information", data: {garages: @garages} do

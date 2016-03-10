@@ -63,3 +63,15 @@
         }
     }
 }
+
+.main-container.garage-page {
+    font-family: curier;
+    
+    .map-container {
+        flex: 1 60%;
+    }
+
+    .main-garage-info {
+        flex: 1 40%;
+    }
+}

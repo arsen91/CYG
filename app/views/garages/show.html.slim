@@ -1,1 +1,27 @@
-= @garage.name
+.main-container.garage-page
+    = link_to "На главную", root_path
+    .main-garage-info
+        .callout
+            h5 
+                = @garage.name
+            table
+                tbody
+                    tr
+                        td Адрес
+                        td 
+                            = @garage.address 
+                    tr
+                        td Время работы
+                        td 
+                            = @garage.address 
+                    tr
+                        td Ценовая категория
+                        td 
+                            = @garage.address 
+                    tr
+                        td.average-rating Средняя оценка
+                        td 
+                            = @garage.average_rating
+
+    .map-container ng-controller="MapController"
+        #map.form-map

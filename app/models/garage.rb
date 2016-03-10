@@ -2,6 +2,7 @@ class Garage < ActiveRecord::Base
     geocoded_by :address
 
     has_many :ratings
+    has_many :comments
     # for seed
     # before_validation :geocode
 
