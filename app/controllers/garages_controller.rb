@@ -4,6 +4,10 @@ class GaragesController < ApplicationController
 	respond_to :html, :js
 	before_filter :authenticate_user!, except: [:search]
 
+	def show
+		@garage = Garage.find(params[:id])
+	end
+
 	def search
 		@found_garages = result_garages = Garage.search_query(params[:search]).average_cost(params[:average_cost])
 		result_garages = assign_rating
