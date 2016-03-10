@@ -32,22 +32,44 @@ $(document).ready(function() {
                 marker = L.marker([garageConfig.latitude, garageConfig.longitude], options || {}).addTo(this.map);
 
             if (garageConfig.popup) {
-                var cost = '';
                 var template = _.template(JST["templates/popupContent"]);
                 popupElement = template(garageConfig);
-                for (var i = 0; i < garageConfig.average_cost; i++) {
-                    cost += '<span class="glyphicon glyphicon-usd"></span>';
-                }
+                addOpenHandler(marker, garageConfig);
             } else {
                 popupElement = garageConfig.defaultText;
             }
             
-            popup = marker.bindPopup(popupElement)
+            popup = marker.bindPopup(popupElement);
             
             if (garageConfig.showPopup) {
                 popup.openPopup();
             }
             return marker;
+        }
+
+        function addOpenHandler(marker, garageConfig) {
+            marker.on('popupopen', function() {
+                $('#star').raty({
+                    score: 0,
+                    path: '/assets',
+                    readOnly: !garageConfig.rating.id,
+                    click: function(score, evt) {
+                        $.ajax({
+                            url: '/ratings/' + garageConfig.rating.id,
+                            type: 'PATCH',
+                            data: { score: score }
+                        }).done(function(data) {
+                            $('#average_star').raty('set', {score: data})
+                        });
+                    }
+                });
+
+                $('#average_star').raty({
+                    score: garageConfig.rating.average,
+                    path: '/assets',
+                    readOnly: true
+                });
+            });
         }
     });
 });

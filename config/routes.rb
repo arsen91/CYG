@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ratings/update'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   get 'garages/' => 'garages#search', as: 'search_garages'
 
   resources :garages
+
+  resources :ratings, only: :update
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,7 @@
 class Garage < ActiveRecord::Base
     geocoded_by :address
+
+    has_many :ratings
     # for seed
     # before_validation :geocode
 
@@ -23,4 +25,8 @@ class Garage < ActiveRecord::Base
     }
 
     scope :average_cost, -> (average_cost) { where average_cost: Integer(average_cost) === 0 ? [1,2,3] : average_cost }
+
+    def average_rating
+      ratings.sum(:score) / ratings.size
+    end
 end

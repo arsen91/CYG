@@ -12,8 +12,13 @@ $(document).ready(function() {
                     });
 
                     _.forEach(data, function(item) {
-                        item.popup = true;
-                        markers.push(mapFactory.addMarker(item, {icon: mapFactory.carIcon}));
+                        item.garage.popup = true;
+                        item.garage.rating = {
+                            average: item.rating.average,
+                            id: item.rating.id
+                        };
+                        
+                        markers.push(mapFactory.addMarker(item.garage, {icon: mapFactory.carIcon}));
                     });
                 }
             }
