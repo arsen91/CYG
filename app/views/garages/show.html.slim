@@ -13,15 +13,19 @@
                     tr
                         td Время работы
                         td 
-                            = @garage.address 
+                            = @garage.start_time
+                            |-
+                            = @garage.end_time
                     tr
                         td Ценовая категория
-                        td 
-                            = @garage.address 
+                        td
+                            - for i in (0..@garage.average_cost)
+                                span.glyphicon.glyphicon-usd
                     tr
                         td.average-rating Средняя оценка
                         td 
                             = @garage.average_rating
+        
 
     .map-container ng-controller="MapController"
         #map.form-map
