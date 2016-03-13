@@ -6,7 +6,7 @@ class GaragesController < ApplicationController
 
 	def show
 		@comment = Comment.new
-		@comments = Comment.where(garage_id: params[:id])
+		@comments = get_comments.reverse
 		@garage = Garage.find(params[:id])
 	end
 
@@ -50,5 +50,12 @@ class GaragesController < ApplicationController
 
 		def garage_params
 	      params.require(:garage).permit(:name, :address, :latitude, :longitude, :average_cost, :start_time, :end_time, :working_days)
+	    end
+
+	    def get_comments
+	    	comments = Comment.where(garage_id: params[:id])
+	    	comments.map do |comment|
+	    		{ commentObj: comment, user_name: comment.get_user.full_name, user_score: comment.get_user.get_rating(comment.garage_id).first.score }
+	    	end
 	    end
 end

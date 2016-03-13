@@ -30,20 +30,23 @@
         #map.form-map
     
     .comment-container
-        h5 Комментарии:
-        - @comments.each do |comment|
-            .comment
-                .callout.secondary.comment-header
-                    = comment.created_at 
-                    |  by 
-                    = comment.get_user.full_name
-                    span 
-                        |  Рейтинг - 
-                        |  
-                        = comment.get_user.get_rating(comment.get_user.id).first.score
-                .callout.comment-content 
-                    = comment.content
-    
+        .header
+            h5 Комментарии:
+        .comments
+            - @comments.each do |comment|
+                .comment
+                    .callout.secondary.comment-header
+                        = comment[:commentObj].created_at.to_json
+                        |  by 
+                        = comment[:user_name]
+                        - if current_user.id == comment[:commentObj].user_id
+                            span 
+                                = link_to "Удалить", comment_path(comment), method: :delete, remote: true, class: "detele-comment"
+
+                        .user-score.show-score data-score=comment[:user_score]
+                    .callout.comment-content 
+                        = comment[:commentObj].content
+        
     .create-comment
         h5 Создать коментарий
         = form_for @comment, remote: true do |f|

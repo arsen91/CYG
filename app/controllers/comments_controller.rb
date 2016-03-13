@@ -6,7 +6,22 @@ class CommentsController < ApplicationController
         @comment.save
                
         respond_to do |format| 
-            format.json {render json: @comment}
+            format.json {
+                render json: {
+                    comment: @comment, 
+                    user_name: current_user.full_name, 
+                    user_score: @comment.get_user.get_rating(@comment.garage_id).first.score
+                } 
+            }
+        end
+    end
+
+    def destroy
+        comment = Comment.find(params[:commentObj])
+        comment.destroy
+
+        respond_to do |format|
+            format.json { render json: { status: "OK" } }
         end
     end
 
