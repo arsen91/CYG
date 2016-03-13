@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :garages
 
+  resources :comments, only: :create
+
   resources :ratings, only: :update
 
   # Example of regular route:

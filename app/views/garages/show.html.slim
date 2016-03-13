@@ -26,6 +26,27 @@
                         td 
                             = @garage.average_rating
         
-
     .map-container ng-controller="MapController"
         #map.form-map
+    
+    .comment-container
+        h5 Комментарии:
+        - @comments.each do |comment|
+            .comment
+                .callout.secondary.comment-header
+                    = comment.created_at 
+                    |  by 
+                    = comment.get_user.full_name
+                    span 
+                        |  Рейтинг - 
+                        |  
+                        = comment.get_user.get_rating(comment.get_user.id).first.score
+                .callout.comment-content 
+                    = comment.content
+    
+    .create-comment
+        h5 Создать коментарий
+        = form_for @comment, remote: true do |f|
+            = f.text_area :content, class: 'comment-text'
+            = f.hidden_field :garage_id, value: @garage.id
+            = f.submit "Сохранить", class: 'button small'

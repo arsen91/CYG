@@ -5,6 +5,8 @@ class GaragesController < ApplicationController
 	before_filter :authenticate_user!, except: [:search]
 
 	def show
+		@comment = Comment.new
+		@comments = Comment.where(garage_id: params[:id])
 		@garage = Garage.find(params[:id])
 	end
 
