@@ -12,7 +12,7 @@
 					- if user_signed_in?
 						li
 							= link_to 'Добавить новый гараж', new_garage_path
-						li
+						li.delete-link
 							= link_to 'Выйти', destroy_user_session_path, method: :delete, remote: true, id: "logout"
 						li
 							a 
