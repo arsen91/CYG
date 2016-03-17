@@ -2,8 +2,8 @@
 
 one:
   journal_id: 
-  content: MyString
+  description: MyText
 
 two:
   journal_id: 
-  content: MyString
+  description: MyText

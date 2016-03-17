@@ -1,4 +1,3 @@
-require 'pry'
 class GaragesController < ApplicationController
 	before_action :all_garages, only: [:new]
 	respond_to :html, :js

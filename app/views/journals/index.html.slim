@@ -1,0 +1,5 @@
+div.
+    - if !@journal.any?
+        = link_to "Создать журнал", journals_path, method: :post, remote: true, class: "expanded button"
+    - else 
+        h1 Вот и журнал

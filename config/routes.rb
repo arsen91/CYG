@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :garages
 
+  resources :journals
+
   resources :comments
 
   resources :ratings, only: :update
