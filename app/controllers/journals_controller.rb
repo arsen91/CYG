@@ -1,6 +1,9 @@
+require 'pry'
 class JournalsController < ApplicationController
     def index
         @journal = Journal.where(user_id: current_user.id)
+        @note = Note.new
+        @notes = get_notes
     end
 
     def create
@@ -13,6 +16,9 @@ class JournalsController < ApplicationController
 
     private
         def get_notes
-            Notes.where(journal_id: @journal.id)
+            # binding.pry
+            if @journal.any?
+                Note.where(journal_id: @journal[0].id)
+            end
         end
 end

@@ -59,7 +59,7 @@ $(document).ready(function() {
                             type: 'PATCH',
                             data: { score: score }
                         }).done(function(data) {
-                            $('#average_star').raty('set', {score: data})
+                            $('#average_star').raty('set', {score: data});
                         });
                     }
                 });

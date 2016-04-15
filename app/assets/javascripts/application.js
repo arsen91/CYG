@@ -21,5 +21,5 @@
 angular.module('CYG', []);
 $(document).on('ready page:load', function() { 
     $(document).foundation();
-    angular.bootstrap(document.body, ['CYG'])
+    angular.bootstrap(document.body, ['CYG']);
 });

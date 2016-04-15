@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notes/create'
+
   get 'ratings/update'
 
   devise_for :users
@@ -11,9 +13,12 @@ Rails.application.routes.draw do
 
   resources :garages
 
-  resources :journals
+  resources :journals do 
+    resources :notes
+  end
 
   resources :comments
+
 
   resources :ratings, only: :update
 
