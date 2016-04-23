@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317205049) do
+ActiveRecord::Schema.define(version: 20160422205713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.string   "make"
+    t.string   "color"
+    t.integer  "user_id"
+    t.string   "fuel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "year"
+  end
+
+  add_index "cars", ["user_id"], name: "index_cars_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "garage_id"
@@ -42,10 +54,8 @@ ActiveRecord::Schema.define(version: 20160317205049) do
   end
 
   create_table "journals", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "car_id"
   end
-
-  add_index "journals", ["user_id"], name: "index_journals_on_user_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.integer  "journal_id"
@@ -86,9 +96,9 @@ ActiveRecord::Schema.define(version: 20160317205049) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cars", "users"
   add_foreign_key "comments", "garages"
   add_foreign_key "comments", "users"
-  add_foreign_key "journals", "users"
   add_foreign_key "notes", "journals"
   add_foreign_key "ratings", "garages"
   add_foreign_key "ratings", "users"

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
     has_many :ratings
     has_many :comments
+    has_many :cars
 
     def get_rating(garage_id)
         Rating.where(user_id: self.id, garage_id: garage_id)

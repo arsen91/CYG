@@ -15,7 +15,7 @@
 						li.delete-link
 							= link_to 'Выйти', destroy_user_session_path, method: :delete, remote: true, id: "logout"
 						li
-							= link_to 'Ваш журнал', journals_path, method: :get
+							= link_to 'Ваш авто', cars_path, method: :get
 					- else 
 						li
 							= link_to 'Login', new_user_session_path, class: 'button'

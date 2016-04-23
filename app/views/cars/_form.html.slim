@@ -1,0 +1,14 @@
+= form_for @car, :html => {:class => 'car_form'} do |f|
+    = f.label :make, 'Марка'
+    = f.text_field :make
+
+    = f.label :fuel, 'Вид топлива'
+    = f.select :fuel, ['Бензин', 'Дизель', 'Газ', 'Электричество']
+
+    = f.label :color, 'Цвет'
+    = f.text_field :color
+
+    = f.label :year, 'Год выпуска'
+    = f.select :year,  (Time.zone.now.year - 40)..(Time.zone.now.year + 1)
+
+    = f.submit 'Сохранить', class: "button small"

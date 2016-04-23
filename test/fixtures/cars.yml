@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  make: MyString
+  color: MyString
+  user_id: 
+  year: 2016-04-22 01:34:49
+  fuel: MyString
+
+two:
+  make: MyString
+  color: MyString
+  user_id: 
+  year: 2016-04-22 01:34:49
+  fuel: MyString

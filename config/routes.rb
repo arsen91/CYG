@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+resources :cars
+
   get 'notes/create'
 
   get 'ratings/update'
+
+  get 'cars/:id/journal' => 'cars#get_car_journal'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

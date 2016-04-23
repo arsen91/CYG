@@ -1,0 +1,24 @@
+.container
+    header
+        ul.menu 
+            li.menu-item
+                = link_to "На главную", root_path
+            li.menu-item
+                = link_to "Добавить новую машину", new_car_path
+
+    .tiles
+        - @cars.each do |car|
+            .car-tile.car-control*{'data-carId' => car.id}
+                ul.car-props
+                    li.car-property
+                        | Марка: 
+                        = car.make
+                    li.car-property
+                        | Год выпуска:
+                        = car.year
+                    li.car-property
+                        | Вид топлива: 
+                        = car.fuel
+                    li.car-property
+                        | Цвет: 
+                        = car.color    

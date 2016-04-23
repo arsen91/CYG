@@ -1,0 +1,18 @@
+.main-container
+    = link_to "На главную", root_path
+
+    .notes-container.notes
+        .callout.notes-form
+            h5 Введите данные записи
+            = form_for [@journal, @note], remote: true, note: @note do |f|
+                = f.text_area :description
+                = f.submit 'Добавить запись', class: 'button'
+
+        .callout.notes-list.secondary
+            - if !@notes.any?
+                h5 Записей еще не было!
+            - else
+                ul
+                    - @notes.each do |i|
+                        li.note-item
+                            = i.description
