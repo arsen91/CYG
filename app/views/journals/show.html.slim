@@ -1,18 +1,24 @@
-.main-container
-    = link_to "На главную", root_path
+.container
+    header
+         ul.menu 
+            li.menu-item
+                = link_to "На главную", root_path
 
-    .notes-container.notes
-        .callout.notes-form
-            h5 Введите данные записи
-            = form_for [@journal, @note], remote: true, note: @note do |f|
-                = f.text_area :description
-                = f.submit 'Добавить запись', class: 'button'
+    .notes-container.notes.row
+        .notes-form-container.small-6.small-centered.large-centered.columns
+            .callout.notes-form
+                h5 Введите данные записи
+                = form_for [@journal, @note], remote: true, note: @note do |f|
+                    = f.text_area :description
+                    = f.submit 'Добавить запись', class: 'button'
 
-        .callout.notes-list.secondary
+        .notes-list
             - if !@notes.any?
                 h5 Записей еще не было!
             - else
                 ul
                     - @notes.each do |i|
-                        li.note-item
-                            = i.description
+                        li.note-item.callout.clearfix
+                            .note-description.pull-left
+                                = i.description
+                            .note-category.right.secondary.label.pull-right Категория: 
