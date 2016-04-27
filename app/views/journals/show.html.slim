@@ -10,6 +10,7 @@
                 h5 Введите данные записи
                 = form_for [@journal, @note], remote: true, note: @note do |f|
                     = f.text_area :description
+                    = f.select :category_id, Category.all.collect { |c| c.name }
                     = f.submit 'Добавить запись', class: 'button'
 
         .notes-list
@@ -21,4 +22,11 @@
                         li.note-item.callout.clearfix
                             .note-description.pull-left
                                 = i.description
-                            .note-category.right.secondary.label.pull-right Категория: 
+                            .note-category.secondary.label.pull-right 
+                                | Категория: 
+                                |
+                                = Category.all.find { |c| c.id === i.category_id }.name
+                            .note-category.secondary.label.pull-right 
+                                | Дата: 
+                                |
+                                = i.created_at.strftime("%m/%d/%Y")

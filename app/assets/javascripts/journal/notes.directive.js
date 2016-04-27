@@ -7,7 +7,10 @@ $(document).ready(function() {
 
         function noteLink(scope, element) {
             element.find('form').on('ajax:success', function(event, data) {
-                element.find('.notes-list ul').append('<li class="note-item">' + data.description + '</li>');
+                var noteItem = element.find('.note-item').first().clone();
+                noteItem.find('.note-description').text(data.note.description);
+                noteItem.find('.note-category').text(data.categoryName);
+                element.find('.notes-list ul').append(noteItem);
                 element.find('textarea').val('');
             });
         }

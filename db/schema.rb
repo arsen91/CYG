@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422205713) do
+ActiveRecord::Schema.define(version: 20160427193240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20160422205713) do
   end
 
   add_index "cars", ["user_id"], name: "index_cars_on_user_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "garage_id"
@@ -60,8 +66,10 @@ ActiveRecord::Schema.define(version: 20160422205713) do
   create_table "notes", force: :cascade do |t|
     t.integer  "journal_id"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "category_id"
+    t.date     "date_of_occurance"
   end
 
   add_index "notes", ["journal_id"], name: "index_notes_on_journal_id", using: :btree
