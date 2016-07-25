@@ -1,4 +1,3 @@
-require 'pry'
 class NotesController < ApplicationController
   def create
     note_params = get_note_params

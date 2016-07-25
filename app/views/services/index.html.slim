@@ -1,0 +1,14 @@
+.main-container.garage-page
+    = link_to "На главную", root_path
+    .row.align-center
+        .column
+            -if !@services.any?
+                h5 Услуг пока не добавлено :( Воспользовались услугой?
+                button.button type='button' data-toggle='example-dropdown' Добавьте!
+                #example-dropdown.dropdown-pane data-dropdown='true'
+                    = render('form')
+            - else
+                ul
+                    - @services.each do |service|
+                        li 
+                         = service.title

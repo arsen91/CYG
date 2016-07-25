@@ -15,14 +15,15 @@ resources :cars
   root 'welcome#index'
   get 'garages/' => 'garages#search', as: 'search_garages'
 
-  resources :garages
+  resources :garages do
+    resources :services
+  end
 
   resources :journals do 
     resources :notes
   end
 
   resources :comments
-
 
   resources :ratings, only: :update
 

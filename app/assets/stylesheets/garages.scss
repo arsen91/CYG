@@ -69,33 +69,20 @@
     height: auto;
     
     .map-container {
-        flex: 1 60%;
-
-        #map.form-map {
-            height: 40vh;
+        .form-map-garage {
+            height: 100%;
         }
     }
 
-    .main-garage-info {
-        flex: 1 40%;
-
-        .callout{
-            height: 40vh;
-        }
+    .callout {
+        margin: 0;
     }
+
 
     .comment-container {
-        flex: 1 40%;
-        .comment-header {
-            margin: 0;
-        }
-
         .comment-content {
             margin-bottom: 1rem;
         }
-    }
-    .create-comment {
-        flex: 1 60%;
     }
     
     .comment-text {

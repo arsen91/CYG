@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427193240) do
+ActiveRecord::Schema.define(version: 20160711200910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 20160427193240) do
   add_index "ratings", ["garage_id"], name: "index_ratings_on_garage_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
+  create_table "services", force: :cascade do |t|
+    t.integer  "garage_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "services", ["garage_id"], name: "index_services_on_garage_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "full_name"
     t.string   "email",                  default: "", null: false
@@ -110,4 +119,5 @@ ActiveRecord::Schema.define(version: 20160427193240) do
   add_foreign_key "notes", "journals"
   add_foreign_key "ratings", "garages"
   add_foreign_key "ratings", "users"
+  add_foreign_key "services", "garages"
 end

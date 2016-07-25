@@ -1,0 +1,5 @@
+= form_for [@garage,@service], :remote => true do |f|
+    = f.label :title, "Название"
+    = f.text_field :title
+
+    = f.submit 'Сохранить', class: "button small"

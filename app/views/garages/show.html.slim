@@ -1,55 +1,62 @@
 .main-container.garage-page
     = link_to "На главную", root_path
-    .main-garage-info
-        .callout
-            h5 
-                = @garage.name
-            table
-                tbody
-                    tr
-                        td Адрес
-                        td 
-                            = @garage.address 
-                    tr
-                        td Время работы
-                        td 
-                            = @garage.start_time
-                            |-
-                            = @garage.end_time
-                    tr
-                        td Ценовая категория
-                        td
-                            - for i in (0..@garage.average_cost)
-                                span.glyphicon.glyphicon-usd
-                    tr
-                        td.average-rating Средняя оценка
-                        td 
-                            = @garage.average_rating
-        
-    .map-container ng-controller="MapController"
-        #map.form-map
+    .row
+        .main-garage-info.column.small-12.large-6
+            .callout
+                h5 
+                    = @garage.name
+                h5.pull-right
+                    = link_to "Показать услуги", garage_services_path(@garage[:id])
+                table
+                    tbody
+                        tr
+                            td Адрес
+                            td 
+                                = @garage.address 
+                        tr
+                            td Время работы
+                            td 
+                                = @garage.start_time
+                                |-
+                                = @garage.end_time
+                        tr
+                            td Ценовая категория
+                            td
+                                - for i in (0..@garage.average_cost-1)
+                                    span.glyphicon.glyphicon-usd
+                        tr
+                            td.average-rating Средняя оценка
+                            td 
+                                = @garage.average_rating
+                .add-service-link
+                    span Не нашли услугу, которой воспользовались на СТО? 
+                    = link_to "Добавьте!", new_garage_service_path(@garage[:id])
+            
+        .map-container.column.small-12.large-6 ng-controller="MapController"
+            #map.form-map-garage
     
-    .comment-container
-        .header
-            h5 Комментарии:
-        .comments
-            - @comments.each do |comment|
-                .comment
-                    .callout.secondary.comment-header
-                        = comment[:commentObj].created_at.to_json
-                        |  by 
-                        = comment[:user_name]
-                        - if current_user.id == comment[:commentObj].user_id
-                            span 
-                                = link_to "Удалить", comment_path(comment), method: :delete, remote: true, class: "detele-comment"
+    .row
+        .comment-container.column
+            .header
+                h5 Комментарии:
+            .comments
+                - @comments.each do |comment|
+                    .comment
+                        .callout.secondary.comment-header
+                            = comment[:commentObj].created_at.to_json
+                            |  by 
+                            = comment[:user_name]
+                            - if current_user.id == comment[:commentObj].user_id
+                                span.pull-right
+                                    = link_to "Удалить", comment_path(comment), method: :delete, remote: true, class: "detele-comment"
 
-                        .user-score.show-score data-score=comment[:user_score]
-                    .callout.comment-content 
-                        = comment[:commentObj].content
-        
-    .create-comment
-        h5 Создать коментарий
-        = form_for @comment, remote: true do |f|
-            = f.text_area :content, class: 'comment-text'
-            = f.hidden_field :garage_id, value: @garage.id
-            = f.submit "Сохранить", class: 'button small'
+                            .user-score.show-score data-score=comment[:user_score]
+                        .callout.comment-content 
+                            = comment[:commentObj].content
+            
+        .create-comment.column
+            h5 Создать коментарий
+            = form_for @comment, remote: true do |f|
+                = f.text_area :content, class: 'comment-text'
+                = f.hidden_field :garage_id, value: @garage.id
+                = f.submit "Сохранить", class: 'button small'
